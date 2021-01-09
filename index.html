@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>New film</title>
+	<link rel="stylesheet" href="styles/styles.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="shortcut icon" href="images/favicon.png">
+</head>
+<body>
+	<div class="wrapper">
+		<main class="main">
+			<h1 id="title" class="film-title" contenteditable="true">New film</h1>
+			<section class="section">
+				<h2 class="section-title">Genres</h2>
+				<div class="categories categories--genres">
+					<div class="checkbox-wrapper">
+						<input type="checkbox" id="sciFiGenre" value="Sci-Fi">
+						<label for="sciFiGenre">Sci-Fi</label>
+					</div>
+					<div class="checkbox-wrapper">
+						<input type="checkbox" id="adventureGenre" value="Adventure">
+						<label for="adventureGenre">Adventure</label>
+					</div>
+					<div class="checkbox-wrapper">
+						<input type="checkbox" id="fantasyGenre" value="Fantasy">
+						<label for="fantasyGenre">Fantasy</label>
+					</div>
+					<div class="checkbox-wrapper">
+						<input type="checkbox" id="actionGenre" value="Action">
+						<label for="actionGenre">Action</label>
+					</div>
+					<div class="checkbox-wrapper">
+						<input type="checkbox" id="dramaGenre" value="Drama">
+						<label for="dramaGenre">Drama</label>
+					</div>
+					<div class="checkbox-wrapper">
+						<input type="checkbox" id="animationGenre" value="Animation">
+						<label for="animationGenre">Animation</label>
+					</div>
+					<div class="checkbox-wrapper">
+						<input type="checkbox" id="comedyGenre" value="Comedy">
+						<label for="comedyGenre">Comedy</label>
+					</div>
+					<div class="checkbox-wrapper">
+						<input type="checkbox" id="crimeGenre" value="Crime">
+						<label for="crimeGenre">Crime</label>
+					</div>
+					<div class="checkbox-wrapper">
+						<input type="checkbox" id="romanceGenre" value="Romance">
+						<label for="romanceGenre">Romance</label>
+					</div>
+					<div class="checkbox-wrapper">
+						<input type="checkbox" id="thrillerGenre" value="Thriller">
+						<label for="thrillerGenre">Thriller</label>
+					</div>
+					<div class="checkbox-wrapper">
+						<input type="checkbox" id="disasterGenre" value="Disaster">
+						<label for="disasterGenre">Disaster</label>
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<h2 class="section-title">Media</h2>
+				<div class="categories">
+					<div class="input-wrapper">
+						<label for="poster">Poster</label>
+						<input type="text" id="poster">
+					</div>
+					<div class="input-wrapper" data-type="film">
+						<label for="trailer">Trailer</label>
+						<input type="text" id="trailer">
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<h2 class="section-title">Creators</h2>
+				<div class="categories">
+					<div class="input-wrapper">
+						<label for="director">Director</label>
+						<input type="text" id="director">
+					</div>
+					<div class="input-wrapper">
+						<label for="producers">Producers</label>
+						<input type="text" id="producers">
+					</div>
+					<div class="input-wrapper">
+						<label for="writtens">Writtens</label>
+						<input type="text" id="writtens">
+					</div>
+					<div class="input-wrapper">
+						<label for="music">Music</label>
+						<input type="text" id="music">
+					</div>
+					<div class="input-wrapper">
+						<label for="cinema">Cinematography</label>
+						<input type="text" id="cinema">
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<h2 class="section-title">Details</h2>
+				<div class="categories">
+					<div class="input-wrapper">
+						<label for="studio">Production Co</label>
+						<input type="text" id="production">
+					</div>
+					<div class="input-wrapper">
+						<label for="year">Year</label>
+						<input type="number" id="year">
+					</div>
+					<div class="input-wrapper">
+						<label for="time">Runtime</label>
+						<input type="number" id="time">
+					</div>
+					<div class="input-wrapper">
+						<label for="country">Country</label>
+						<input type="text" id="country" value="USA">
+					</div>
+					<div class="input-wrapper">
+						<label for="parts">Parts</label>
+						<input type="text" id="parts" value="">
+					</div>
+				</div>
+			</section>
+			<section class="section" data-type="film">
+				<h2 class="section-title">Box office</h2>
+				<div class="categories">
+					<div class="input-wrapper">
+						<label for="budget">Budget</label>
+						<input type="text" id="budget" value="100 million">
+					</div>
+					<div class="input-wrapper">
+						<label for="boxoffice">Box Office</label>
+						<input type="text" id="boxoffice" value="100 million">
+					</div>
+				</div>
+			</section>
+			<section class="section">
+				<h2 class="section-title">Actors</h2>
+				<div class="categories actors">
+					<div class="actor">
+						<div class="input-wrapper">
+							<input type="text" class="actor__photo" placeholder="Photo">
+						</div>
+						<div class="input-wrapper">
+							<input type="text" class="actor__name" placeholder="Actor">
+						</div>
+						<div class="input-wrapper">
+							<input type="text" class="actor__role" placeholder="Role">
+						</div>
+					</div>	
+					<button type="button" id="addActor" class="btn add-actor-line">Add</button>
+				</div>
+			</section>
+			<section class="section">
+				<h2 class="section-title">Synopsis</h2>
+				<div class="categories">
+					<textarea id="synopsis" class="synopsis"></textarea>
+				</div>
+			</section>
+			<div class="section" data-type="film">
+				<div class="awards-header">
+					<input type="checkbox" id="includeAwards">
+					<label for="includeAwards" class="section-title">Include awards</label>
+				</div>
+				<div class="awards">
+					<div class="award">
+						<input type="checkbox" value="Oscar" id="awardOscar">
+						<label for="awardOscar">Oscar</label>
+						<div class="award__nominations">
+							<input type="checkbox" value="The Best Cinematography" id="Oscar_1">
+							<label for="Oscar_1">The Best Cinematography</label>
+							<input type="checkbox" value="The Best Decorations" id="Oscar_2">
+							<label for="Oscar_2">The Best Decorations</label>
+							<input type="checkbox" value="The Best Visual Effects" id="Oscar_3">
+							<label for="Oscar_3">The Best Visual Effects</label>
+						</div>
+					</div>
+					<div class="award">
+						<input type="checkbox" value="The Gold Globe" id="awardGoldGlobe">
+						<label for="awardGoldGlobe">The Gold Globe</label>
+						<div class="award__nominations">
+							<input type="checkbox" value="The Best Picture" id="GoldGlode_1">
+							<label for="GoldGlode_1">The Best Picture</label>
+							<input type="checkbox" value="The Best Diretor" id="GoldGlode_2">
+							<label for="GoldGlode_2">The Best Diretor</label>
+						</div>
+					</div>
+					<div class="award">
+						<input type="checkbox" value="The British" id="awardBritish">
+						<label for="awardBritish">The British</label>
+						<div class="award__nominations">
+							<input type="checkbox" value="The Best Picture" id="British_1">
+							<label for="British_1">The Best Visual Effects</label>
+						</div>
+					</div>	
+				</div>					
+			</div>
+			<section class="section hidden" data-type="series">
+				<h2 class="section-title">Seasons</h2>
+				<div class="seasons">
+					<div class="seasons__basic">
+						<div class="input-wrapper">
+							<label for="seasonsCount">Count</label>
+							<input type="number" id="seasonsCount" value="1">
+						</div>	
+						<button id="addSeasons" class="add-seasons-btn btn">Add</button>					
+					</div>
+					<div class="seasons__data"></div>
+				</div>
+			</section>
+		</main>
+		<aside class="sidebar">
+			<h2 class="section-title">Type</h2>
+			<div class="sidebar__row">
+				<div class="select-wrapper">
+					<select class="type">
+						<option value="Film">Film</option>
+						<option value="Series">Series</option>
+					</select>
+				</div>
+			</div>
+			<h2 class="section-title">JSON Info</h2>
+			<div class="sidebar__row">
+				<div class="input-wrapper">
+					<input type="number" id="id" placeholder="ID">
+				</div>
+			</div>
+			<h2 class="section-title">Categories</h2>
+			<div class="sidebar__row">
+				<div class="checkbox-wrapper">
+					<input type="checkbox" id="specialFavorite" class="personal-category" value="special-favorite">
+					<label for="specialFavorite">Special Favorite</label>
+				</div>
+				<div class="checkbox-wrapper">
+					<input type="checkbox" id="mostWatched" class="personal-category" value="most-watched">
+					<label for="mostWatched">Most Watched</label>
+				</div>
+				<div class="checkbox-wrapper">
+					<input type="checkbox" id="cinemaWatched" class="personal-category" value="cinema-watched">
+					<label for="cinemaWatched">Cinema Watched</label>
+				</div>
+				<div class="checkbox-wrapper">
+					<input type="checkbox" id="seriesCategory" class="personal-category" value="series">
+					<label for="seriesCategory">Series</label>
+				</div>
+				<div class="checkbox-wrapper">
+					<input type="checkbox" id="marvelCategory" class="personal-category" value="marvel">
+					<label for="marvelCategory">MCU</label>
+				</div>
+				<div class="checkbox-wrapper">
+					<input type="checkbox" id="dceuCategory" class="personal-category" value="dceu">
+					<label for="dceuCategory">DCEU</label>
+				</div>
+			</div>
+			<div class="sidebar__buttons">
+				<button type="button" id="create" class="btn sidebar__btn sidebar__btn--result">Result</button>
+			</div>
+		</aside>
+	</div>
+
+	<div class="modal">
+		<div class="modal__overlay">
+			<div class="modal__content">
+				<h2 class="section-title">JSON Result</h2>
+				<pre class="modal__json"></pre>
+			</div>
+		</div>
+	</div>
+	<script src="scripts/main.js"></script>
+</body>
+</html>
