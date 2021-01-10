@@ -138,19 +138,16 @@
 			</section>
 			<section class="section">
 				<h2 class="section-title">Actors</h2>
-				<div class="categories actors">
-					<div class="actor">
+				<div id="actors" class="categories multiple-lines">
+					<div class="inputs-line">
 						<div class="input-wrapper">
-							<input type="text" class="actor__photo" placeholder="Photo">
+							<input type="text" class="actor-name" placeholder="Actor">
 						</div>
 						<div class="input-wrapper">
-							<input type="text" class="actor__name" placeholder="Actor">
-						</div>
-						<div class="input-wrapper">
-							<input type="text" class="actor__role" placeholder="Role">
+							<input type="text" class="actor-role" placeholder="Role">
 						</div>
 					</div>	
-					<button type="button" id="addActor" class="btn add-actor-line">Add</button>
+					<button type="button" id="addActor" class="btn add-line-btn">Add</button>
 				</div>
 			</section>
 			<section class="section">
@@ -159,43 +156,19 @@
 					<textarea id="synopsis" class="synopsis"></textarea>
 				</div>
 			</section>
-			<div class="section" data-type="film">
-				<div class="awards-header">
-					<input type="checkbox" id="includeAwards">
-					<label for="includeAwards" class="section-title">Include awards</label>
+			<div class="section">
+				<h2 class="section-title">Awards</h2>
+				<div id="awards" class="categories multiple-lines">
+					<div class="inputs-line">
+						<div class="input-wrapper">
+							<input type="text" class="award-title" placeholder="Award">
+						</div>
+						<div class="input-wrapper">
+							<input type="text" class="award-nominations" placeholder="Nominations">
+						</div>
+					</div>
+					<button type="button" id="addAward" class="btn add-line-btn">Add</button>						
 				</div>
-				<div class="awards">
-					<div class="award">
-						<input type="checkbox" value="Oscar" id="awardOscar">
-						<label for="awardOscar">Oscar</label>
-						<div class="award__nominations">
-							<input type="checkbox" value="The Best Cinematography" id="Oscar_1">
-							<label for="Oscar_1">The Best Cinematography</label>
-							<input type="checkbox" value="The Best Decorations" id="Oscar_2">
-							<label for="Oscar_2">The Best Decorations</label>
-							<input type="checkbox" value="The Best Visual Effects" id="Oscar_3">
-							<label for="Oscar_3">The Best Visual Effects</label>
-						</div>
-					</div>
-					<div class="award">
-						<input type="checkbox" value="The Gold Globe" id="awardGoldGlobe">
-						<label for="awardGoldGlobe">The Gold Globe</label>
-						<div class="award__nominations">
-							<input type="checkbox" value="The Best Picture" id="GoldGlode_1">
-							<label for="GoldGlode_1">The Best Picture</label>
-							<input type="checkbox" value="The Best Diretor" id="GoldGlode_2">
-							<label for="GoldGlode_2">The Best Diretor</label>
-						</div>
-					</div>
-					<div class="award">
-						<input type="checkbox" value="The British" id="awardBritish">
-						<label for="awardBritish">The British</label>
-						<div class="award__nominations">
-							<input type="checkbox" value="The Best Picture" id="British_1">
-							<label for="British_1">The Best Visual Effects</label>
-						</div>
-					</div>	
-				</div>					
 			</div>
 			<section class="section hidden" data-type="series">
 				<h2 class="section-title">Seasons</h2>
@@ -255,7 +228,9 @@
 				</div>
 			</div>
 			<div class="sidebar__buttons">
-				<button type="button" id="create" class="btn sidebar__btn sidebar__btn--result">Result</button>
+				<button id="create" class="btn sidebar__btn sidebar__btn--result">Result</button>
+				<button id="save" class="btn sidebar__btn sidebar__btn--save">Save</button>
+				<button id="clear" class="btn sidebar__btn sidebar__btn--clear">Clear</button>
 			</div>
 		</aside>
 	</div>
@@ -264,10 +239,12 @@
 		<div class="modal__overlay">
 			<div class="modal__content">
 				<h2 class="section-title">JSON Result</h2>
+				<button id="copy" class="btn copy-btn">Copy</button>
 				<pre class="modal__json"></pre>
 			</div>
 		</div>
 	</div>
+	<script src="libraries/FileSaver.js"></script>
 	<script src="scripts/main.js"></script>
 </body>
 </html>
