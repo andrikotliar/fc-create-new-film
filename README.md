@@ -54,3 +54,5 @@ The tool forms JSON-data with properties:
     "type": {"value": "film", "data": null}
 }
 ```
+
+*To save the result in a json file is used the "[FileSaver.js](https://github.com/eligrey/FileSaver.js/)" library.*
