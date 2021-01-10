@@ -1,15 +1,18 @@
 let jsonID = document.querySelector('#id');
+const inputs = document.querySelectorAll('input');
 const title = document.querySelector('.film-title');
 const type = document.querySelector('.type');
 const create = document.querySelector('#create');
+const clear = document.querySelector('#clear');
+const save = document.querySelector('#save');
+const copy = document.querySelector('#copy');
 const resultWindow = document.querySelector('.modal__json');
 const modal = document.querySelector('.modal');
 const modalOverlay = document.querySelector('.modal__overlay');
 const addActor = document.querySelector('#addActor');
-const actors = document.querySelector('.actors');
-const includeAwards = document.querySelector('#includeAwards');
-const awardsList = document.querySelector('.awards');
-const awardCheckboxes = document.querySelectorAll('.award > input[type="checkbox"]');
+const addAward = document.querySelector('#addAward');
+const actors = document.querySelector('#actors');
+const awards = document.querySelector('#awards');
 const seasonsData = document.querySelector('.seasons__data');
 const seasonsCount = document.querySelector('#seasonsCount');
 const addSeasonsBtn = document.querySelector('#addSeasons');
@@ -54,29 +57,28 @@ function clearTitle(string, className) {
 function newFilm() {
 	let id = document.querySelector('#id').value;
     let title = document.querySelector('#title').textContent;
-    let poster = document.querySelector('#poster').value;
-    let trailer = document.querySelector('#trailer').value;
+    let poster = document.querySelector('#poster').value.trim();
+    let trailer = document.querySelector('#trailer').value.trim();
     let genresList = document.querySelectorAll('.categories--genres input[type="checkbox"]');
-    let genres = genreBuilder(genresList);;
-    let production = document.querySelector('#production').value.split(', ');
-    let director = document.querySelector('#director').value;
-    let producers = document.querySelector('#producers').value;
-    let writtens = document.querySelector('#writtens').value;
-    let music = document.querySelector('#music').value;
-    let cinema = document.querySelector('#cinema').value;
+    let genres = genreBuilder(genresList);
+    let production = document.querySelector('#production').value.trim().split(', ');
+    let director = document.querySelector('#director').value.trim();
+    let producers = document.querySelector('#producers').value.trim();
+    let writtens = document.querySelector('#writtens').value.trim();
+    let music = document.querySelector('#music').value.trim();
+    let cinema = document.querySelector('#cinema').value.trim();
     let year = document.querySelector('#year').value;
     let time = document.querySelector('#time').value;
-    let country = document.querySelector('#country').value;
+    let country = document.querySelector('#country').value.trim();
     let budget = document.querySelector('#budget').value;
     let boxoffice = document.querySelector('#boxoffice').value;
     let actors = actorBuilder();
-    let synopsis = document.querySelector('#synopsis').value;
+    let synopsis = document.querySelector('#synopsis').value.trim();
     let categoriesList = document.querySelectorAll('.personal-category');
     let categories = categoriesBuilder(categoriesList);
     let parts = document.querySelector('#parts').value;
-    let awards = null;
+    let awards = awardBuilder();
     let dataType = {"value": "film","data": null};
-
     if(type.value == 'Series') {
         trailer = null;
         dataType = {"value": "series","data": generateSeasonsData()};
@@ -84,10 +86,6 @@ function newFilm() {
 
     if(parts == '') {
         parts = null;
-    }
-
-    if(includeAwards.checked) {
-        awards = awardsBuilder();
     }
     
 	let film = new Film(id, title, poster, trailer, genres, production, director, producers, writtens, music, cinema, year, time, country, budget, boxoffice, actors, synopsis, categories, awards, parts, dataType);
@@ -125,81 +123,51 @@ function actorBuilder() {
         }
     }
     let list = [];
-    let actorPhotosList = document.querySelectorAll('.actor__photo');
-    let actorsList = document.querySelectorAll('.actor__name');
-    let rolesList = document.querySelectorAll('.actor__role'); 
+    let actorsList = document.querySelectorAll('.actor-name');
+    let rolesList = document.querySelectorAll('.actor-role'); 
 
     for(let i = 0; i < actorsList.length; i++) {
-        list.push(new Actor(actorPhotosList[i].value, actorsList[i].value, rolesList[i].value))
+        list.push(new Actor(actorsList[i].value.trim().toLowerCase().replace(/\s/g, '-'), actorsList[i].value.trim(), rolesList[i].value.trim()))
+    }
+    return list;
+}
+function awardBuilder() {
+    class Award {
+        constructor(title, nominations) {
+            this.title = title;
+            this.nominations = nominations;
+        }
+    }
+    let list = [];
+    let awardsList = document.querySelectorAll('.award-title');
+    let nominationsList = document.querySelectorAll('.award-nominations'); 
+
+    for(let i = 0; i < awardsList.length; i++) {
+        if(awardsList[i].value != '') {
+            list.push(new Award(awardsList[i].value.trim(), nominationsList[i].value.trim().split(', ')));
+        }
+        else {
+            list = null;
+        }
     }
     return list;
 }
 
-function addActorLine() {
+function addLine(selector, firstClassName, secondClassName) {
     let layout = `
-        <div class="actor">
+        <div class="inputs-line">
             <div class="input-wrapper">
-                <input type="text" class="actor__photo" placeholder="Photo">
+                <input type="text" class="${firstClassName}" placeholder="Actor">
             </div>
             <div class="input-wrapper">
-                <input type="text" class="actor__name" placeholder="Actor">
-            </div>
-            <div class="input-wrapper">
-                <input type="text" class="actor__role" placeholder="Role">
+                <input type="text" class="${secondClassName}" placeholder="Role">
             </div>
         </div>	    
     `
     
-    actors.insertAdjacentHTML('beforeend', layout);
-}
-function showAwards() {
-    if(includeAwards.checked) {
-        awardsList.style.display = 'flex';
-    }
-    else {
-        awardsList.style.display = 'none';
-    }
+    selector.insertAdjacentHTML('beforeend', layout);
 }
 
-function showNominations() {
-    for(let i = 0; i < awardCheckboxes.length; i++) {
-        let choosedNominations = awardCheckboxes[i].closest('.award').querySelector('.award__nominations');
-        if(awardCheckboxes[i].checked) {
-            choosedNominations.style.display = 'block';
-        } else {
-            choosedNominations.style.display = 'none';
-        }
-    }
-}
-
-function awardsBuilder() {
-    class Award {
-        constructor(title, nominations) {
-            this.title = title
-            this.nominations = nominations
-        }
-    }
-
-    let awards = [];
-    let awardList = document.querySelectorAll('.award');
-    for(let i = 0; i < awardList.length; i++) {
-        if(awardCheckboxes[i].checked) {
-            awards.push(new Award(awardCheckboxes[i].value, nominationsBuilder(awardList[i])))
-        }
-    }
-    return awards;
-}
-
-function nominationsBuilder(selector) {
-    let nominations = [];
-    let nominationsList = selector.querySelectorAll('.award__nominations input');
-    for(let i = 0; i < nominationsList.length; i++) {
-        if(nominationsList[i].checked) {
-            nominations.push(nominationsList[i].value);
-        }
-    }
-    return nominations;
-} 
 function seasonsComponent() {
     let layout = `
         <div class="seasons__data-row">
@@ -241,9 +209,10 @@ function generateSeasonsData() {
 }
 
 addSeasonsBtn.addEventListener('click', addSeasons);
+
 function showNewData() {
     let film = newFilm();
-    resultWindow.innerHTML = JSON.stringify(film, undefined, 4);
+    resultWindow.innerHTML = JSON.stringify(film, undefined, 4).replace(/"(\\.|[^"\\])*":/g, '<span class="property">$&</span>').replace(/[{},\[\]]/g, '<span class="symbol">$&</span>');;
     localStorage.setItem('JSONID', id.value);
 }
 
@@ -286,10 +255,33 @@ function showModal(modalID) {
 function closeModal(e) {
 	if(e.target.className == 'modal__overlay') {
 		e.target.closest('.modal').classList.remove('modal--visible');
-		if(!e.target.closest('.additional')) {
-			document.body.style.overflow = '';
-		}
+	    document.body.style.overflow = '';
 	}
+}
+
+function clearFields() {
+    title.textContent = 'New film';
+    inputs.forEach(input => {  
+        input.checked = false; 
+        if(input.id != 'id') {
+            input.value = '';
+        }   
+    });
+}
+
+function saveData() {
+    let data = newFilm();
+    let blob = new Blob([JSON.stringify(data, undefined, 4)], {type: "application/json; charset=utf-8"});
+    saveAs(blob, `${title.textContent}.json`);
+}
+
+function copyData() {
+    navigator.clipboard.writeText(resultWindow.textContent).then(() => {
+        copy.classList.add('copy-btn--copied');
+        setTimeout(() => {
+          copy.classList.remove('copy-btn--copied');  
+        }, 500)
+    });
 }
 
 // init functions 
@@ -301,8 +293,6 @@ type.addEventListener('change', () => {
 title.addEventListener('click', () => {
 	clearTitle('New film', title);
 });
-includeAwards.addEventListener('change', showAwards);
-awardsList.addEventListener('click', showNominations);
 create.addEventListener('click', () => {
     if(jsonID.value != localStorage.getItem('JSONID')) {
         showNewData();
@@ -312,5 +302,13 @@ create.addEventListener('click', () => {
         alert("It's need to change ID");
     }
 });
-addActor.addEventListener('click', addActorLine);
+clear.addEventListener('click', clearFields);
+save.addEventListener('click', saveData);
+copy.addEventListener('click', copyData);
+addActor.addEventListener('click', () => {
+    addLine(actors, 'actor-name', 'actor-role');
+});
+addAward.addEventListener('click', () => {
+    addLine(awards, 'award-title', 'award-nominations');
+});
 modalOverlay.addEventListener('click', closeModal);
