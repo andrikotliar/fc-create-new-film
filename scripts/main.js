@@ -316,7 +316,7 @@ modalOverlay.addEventListener('click', closeModal);
 // register service worker
 
 if('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js')
+  navigator.serviceWorker.register('../sw.js')
     .then(() => navigator.serviceWorker.ready.then((worker) => {
       worker.sync.register('syncdata');
     }))
