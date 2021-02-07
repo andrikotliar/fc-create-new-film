@@ -4,9 +4,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<title>New film</title>
-	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="stylesheet" href="dist/styles.css">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-	<link rel="icon" href="images/favicon.png">
+	<link rel="icon" href="dist/images/favicon.png">
 	<link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -141,7 +141,7 @@
 			<section class="section">
 				<h2 class="section-title">Actors</h2>
 				<div id="actors" class="categories multiple-lines">
-					<div class="inputs-line">
+					<div class="inputs-line inputs-line--static">
 						<div class="input-wrapper">
 							<input type="text" class="actor-name" placeholder="Actor">
 						</div>
@@ -161,7 +161,7 @@
 			<div class="section">
 				<h2 class="section-title">Awards</h2>
 				<div id="awards" class="categories multiple-lines">
-					<div class="inputs-line">
+					<div class="inputs-line inputs-line--static">
 						<div class="input-wrapper">
 							<input type="text" class="award-title" placeholder="Award">
 						</div>
@@ -246,7 +246,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="libraries/FileSaver.js"></script>
-	<script src="scripts/main.js"></script>
+	<script src="dist/libraries/FileSaver.js"></script>
+	<script src="dist/main.js"></script>
 </body>
 </html>

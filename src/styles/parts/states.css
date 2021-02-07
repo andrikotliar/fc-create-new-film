@@ -1,0 +1,17 @@
+.hidden {
+    display: none;
+}
+
+.modal--visible {
+    visibility: visible;
+    opacity: 1;
+    z-index: 999;
+}
+
+.modal--visible .modal__content {
+    transform: translateX(0);
+}
+
+.input-wrapper input[type="number"].error {
+	box-shadow: 0 0 0 2px #ff0505;
+}

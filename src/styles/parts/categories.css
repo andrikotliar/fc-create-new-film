@@ -1,0 +1,10 @@
+.categories {
+	display: flex;
+	flex-wrap: wrap;
+	padding-top: 20px;
+	gap: 20px;
+}
+
+.categories--genres {
+	gap: 10px;
+}

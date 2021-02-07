@@ -1,0 +1,60 @@
+.btn {
+	font-size: 14px;
+	padding: 15px 20px;
+	border-radius: 5px;
+	background-color: #fff;
+	transition: .3s;
+	line-height: 1;
+}
+
+.copy-btn {
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	color: #fff;
+	font-weight: bold;
+	background-color: #ef5350;
+	text-transform: uppercase;
+}
+
+.copy-btn--copied:after {
+	position: absolute;
+    bottom: -35px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    background: rgba(0,0,0,.5);
+    content: 'Copied';
+    transition: .3s
+}
+
+.copy-btn:hover {
+	background-color: #ff867c;
+}
+
+.add-seasons-btn {
+	margin-top: auto;
+	background-color: #ddd;
+	box-shadow: 0 0 0 2px #ddd;
+}
+
+.save-seasons-btn {
+	color: #fff;
+	margin-top: auto;
+	background-color: #777;
+	box-shadow: 0 0 0 2px #777;
+}
+
+.add-line-btn {
+	position: absolute;
+	bottom: 0;
+	left: 460px;
+	color: #fff;
+	background-color: #006db7;
+}
+
+.add-line-btn:hover {
+	box-shadow: 0 0 0 3px rgba(114, 184, 231, .5);
+}

@@ -1,0 +1,12 @@
+.multiple-lines {
+	position: relative;
+}
+
+.inputs-line {
+	display: flex;
+	gap: 20px;
+}
+
+.inputs-line input {
+	width: 210px;
+}

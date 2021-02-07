@@ -1,0 +1,26 @@
+html {
+	font-size: 16px;
+}
+
+body {
+	font-size: 1rem;
+	font-family: 'Poppins', sans-serif;
+}
+
+.wrapper {
+	display: flex;
+}
+
+.main {
+	width: 70%;
+	padding: 40px 100px;
+}
+
+.section {
+    margin: 20px 0;
+}
+
+.section-title {
+	font-weight: bold;
+	font-size: 1.1rem;
+}

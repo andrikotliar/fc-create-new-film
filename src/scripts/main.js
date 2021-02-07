@@ -61,7 +61,7 @@ function newFilm() {
     let trailer = document.querySelector('#trailer').value.trim();
     let genresList = document.querySelectorAll('.categories--genres input[type="checkbox"]');
     let genres = genreBuilder(genresList);
-    let production = document.querySelector('#production').value.trim().split(', ');
+    let production = productionBuilder();
     let director = document.querySelector('#director').value.trim();
     let producers = document.querySelector('#producers').value.trim();
     let writtens = document.querySelector('#writtens').value.trim();
@@ -113,6 +113,12 @@ function genreBuilder(list) {
         }
     }
     return choosedGenres;
+}
+function productionBuilder() {
+    let production = [];
+    let productionArray = document.querySelector('#production').value.trim().split(', ');
+    productionArray.forEach(item => production.push(item.replace(/\s/g, '-')));
+    return production;
 }
 function actorBuilder() {
     class Actor {
@@ -212,8 +218,9 @@ addSeasonsBtn.addEventListener('click', addSeasons);
 
 function showNewData() {
     let film = newFilm();
-    resultWindow.innerHTML = JSON.stringify(film, undefined, 4).replace(/"(\\.|[^"\\])*":/g, '<span class="property">$&</span>').replace(/[{},\[\]]/g, '<span class="symbol">$&</span>');;
+    resultWindow.innerHTML = JSON.stringify(film, undefined, 4).replace(/"(\\.|[^"\\])*":/g, '<span class="property">$&</span>').replace(/[{},\[\]]/g, '<span class="symbol">$&</span>');
     localStorage.setItem('JSONID', id.value);
+    showModal(modal);
 }
 
 function hideType() {
@@ -259,20 +266,40 @@ function closeModal(e) {
 	}
 }
 
+function closeModalWithoutClick() {
+    if(modal.classList.contains('modal--visible')) {
+        modal.classList.remove('modal--visible');
+        document.body.style.overflow = '';
+    }
+}
+
 function clearFields() {
+    let inputsLine = document.querySelectorAll('.inputs-line');
+    let textAreas = document.querySelectorAll('textarea');
     title.textContent = 'New film';
     inputs.forEach(input => {  
         input.checked = false; 
-        if(input.id != 'id') {
+        if(input.id != 'id' && input.type != 'checkbox') {
             input.value = '';
+            if(input.id == 'budget' || input.id == 'boxoffice' || input.id == 'country') {
+                input.value = input.defaultValue;
+            }
         }   
     });
+    inputsLine.forEach(il => {
+        if(!il.classList.contains('inputs-line--static')) {
+            il.remove();
+        }
+    });
+    textAreas.forEach(ta => ta.value = '');
 }
 
 function saveData() {
     let data = newFilm();
+    let fileTitle = jsonID.value.padStart(4, 0) + '_' + title.textContent;
+    let formatedTitle = fileTitle.replace(/[\,\.\:-\s]/g, '_').replace(/\_+/g, '_');
     let blob = new Blob([JSON.stringify(data, undefined, 4)], {type: "application/json; charset=utf-8"});
-    saveAs(blob, `${title.textContent}.json`);
+    saveAs(blob, `${formatedTitle}.json`);
 }
 
 function copyData() {
@@ -284,6 +311,21 @@ function copyData() {
     });
 }
 
+function idError() {
+    jsonID.focus();
+    jsonID.classList.add('error');
+}
+
+function checkID(init) {
+    if(jsonID.value != localStorage.getItem('JSONID')) {
+        init();
+    }
+    else {
+        closeModalWithoutClick();
+        idError();
+    }
+}
+
 // init functions 
 
 type.addEventListener('change', () => {
@@ -293,18 +335,10 @@ type.addEventListener('change', () => {
 title.addEventListener('click', () => {
 	clearTitle('New film', title);
 });
-create.addEventListener('click', () => {
-    if(jsonID.value != localStorage.getItem('JSONID')) {
-        showNewData();
-        showModal(modal);        
-    }
-    else {
-        alert("It's need to change ID");
-    }
-});
+create.addEventListener('click', showNewData);
 clear.addEventListener('click', clearFields);
-save.addEventListener('click', saveData);
-copy.addEventListener('click', copyData);
+save.addEventListener('click', () => checkID(saveData));
+copy.addEventListener('click', () => checkID(copyData));
 addActor.addEventListener('click', () => {
     addLine(actors, 'actor-name', 'actor-role');
 });
@@ -312,6 +346,11 @@ addAward.addEventListener('click', () => {
     addLine(awards, 'award-title', 'award-nominations');
 });
 modalOverlay.addEventListener('click', closeModal);
+jsonID.addEventListener('change', () => {
+    if(jsonID.classList.contains('error')) {
+        jsonID.classList.remove('error');
+    }
+})
 
 // register service worker
 

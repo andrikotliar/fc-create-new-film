@@ -3,12 +3,12 @@
   "short_name": "New Film",
   "icons": [
       {
-        "src": "https://andrikotliar.github.io/fc-create-new-film/images/favicon.png",
+        "src": "https://andrikotliar.github.io/fc-create-new-film/dist/images/favicon.png",
         "sizes": "64x64",
         "type": "image/png"
       },
       {
-        "src": "https://andrikotliar.github.io/fc-create-new-film/images/icon-512.png",
+        "src": "https://andrikotliar.github.io/fc-create-new-film/dist/images/icon-512.png",
         "sizes": "512x512",
         "type": "image/png"        
       }
