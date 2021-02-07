@@ -82,6 +82,8 @@ function newFilm() {
     if(type.value == 'Series') {
         trailer = null;
         dataType = {"value": "series","data": generateSeasonsData()};
+        budget = null;
+        boxoffice = null;
     }
 
     if(parts == '') {
