@@ -89,6 +89,14 @@ function newFilm() {
     if(parts == '') {
         parts = null;
     }
+
+    if(cinema == '') {
+        cinema = null;
+    }
+
+    if(boxoffice == '') {
+        boxoffice = null;
+    }
     
 	let film = new Film(id, title, poster, trailer, genres, production, director, producers, writtens, music, cinema, year, time, country, budget, boxoffice, actors, synopsis, categories, awards, parts, dataType);
 
@@ -228,7 +236,6 @@ addSeasonsBtn.addEventListener('click', addSeasons);
 function showNewData() {
     let film = newFilm();
     resultWindow.innerHTML = JSON.stringify(film, undefined, 4).replace(/"(\\.|[^"\\])*":/g, '<span class="property">$&</span>').replace(/[{},\[\]]/g, '<span class="symbol">$&</span>');
-    localStorage.setItem('JSONID', id.value);
     showModal(modal);
 }
 
@@ -309,6 +316,7 @@ function saveData() {
     let formatedTitle = fileTitle.replace(/[\,\.\:-\s]/g, '_').replace(/\_+/g, '_');
     let blob = new Blob([JSON.stringify(data, undefined, 4)], {type: "application/json; charset=utf-8"});
     saveAs(blob, `${formatedTitle}.json`);
+    localStorage.JSONID = jsonID.value;
 }
 
 function copyData() {
@@ -318,6 +326,7 @@ function copyData() {
           copy.classList.remove('copy-btn--copied');  
         }, 500)
     });
+    localStorage.JSONID = jsonID.value;
 }
 
 function idError() {
