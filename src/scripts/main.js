@@ -305,7 +305,7 @@ function clearFields() {
 
 function saveData() {
     let data = newFilm();
-    let fileTitle = jsonID.value.padStart(4, 0) + '_' + title.textContent;
+    let fileTitle = '_' + title.textContent;
     let formatedTitle = fileTitle.replace(/[\,\.\:-\s]/g, '_').replace(/\_+/g, '_');
     let blob = new Blob([JSON.stringify(data, undefined, 4)], {type: "application/json; charset=utf-8"});
     saveAs(blob, `${formatedTitle}.json`);
