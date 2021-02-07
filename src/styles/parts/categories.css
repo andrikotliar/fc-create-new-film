@@ -8,3 +8,9 @@
 .categories--genres {
 	gap: 10px;
 }
+
+@media (max-width: 650px) {
+	.categories:not(.categories--genres) {
+		flex-direction: column;
+	}
+}

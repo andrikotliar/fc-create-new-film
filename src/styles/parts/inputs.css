@@ -68,3 +68,20 @@ textarea:focus {
 select:focus {
 	box-shadow: 0 0 0 2px #006db7;
 }
+
+@media (max-width: 950px) {
+	#id, .select-wrapper {
+		width: 100%;
+	}
+}
+@media (max-width: 650px) {
+	.input-wrapper {
+		width: 100%;
+	}
+	.input-wrapper input {
+		width: 100%;
+	}
+	.input-wrapper input[type="number"] {
+		width: 100%;
+	}
+}

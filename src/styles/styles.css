@@ -3,10 +3,9 @@
 @import 'parts/buttons.css';
 @import 'parts/sidebar.css';
 @import 'parts/film.css';
+@import 'parts/multiple-lines.css';
 @import 'parts/inputs.css';
 @import 'parts/categories.css';
-@import 'parts/multiple-lines.css';
 @import 'parts/series.css';
 @import 'parts/modal.css';
 @import 'parts/states.css';
-@import 'parts/media.css';

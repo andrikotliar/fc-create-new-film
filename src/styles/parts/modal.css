@@ -32,6 +32,22 @@
 	cursor: auto;
 }
 
+@media (max-width: 760px) {
+	.modal__content {
+		width: 80%;
+	}
+}
+
+@media (max-width: 500px) {
+	.modal__overlay {
+		justify-content: center;
+		align-items: center;
+	}
+	.modal__content {
+		height: 80%;
+	}
+}
+
 .modal__json {
 	color: #000051;
 	font-family: monospace;

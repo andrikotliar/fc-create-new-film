@@ -58,3 +58,17 @@
 .add-line-btn:hover {
 	box-shadow: 0 0 0 3px rgba(114, 184, 231, .5);
 }
+
+@media (max-width: 910px) {
+	.add-line-btn {
+		left: 240px;
+		bottom: 10px;
+	}
+}
+@media (max-width: 650px) {
+	.add-line-btn {
+		left: 0;
+		bottom: 0;
+		width: 100%;
+	}
+}

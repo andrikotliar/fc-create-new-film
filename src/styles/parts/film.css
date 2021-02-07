@@ -35,3 +35,8 @@
 .film-title:focus:after {
 	display: block;
 }
+@media (max-width: 500px) {
+	.film-title:before {
+		display: none;
+	}
+}
