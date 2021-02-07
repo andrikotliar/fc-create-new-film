@@ -132,8 +132,8 @@ function productionBuilder() {
 }
 function actorBuilder() {
     class Actor {
-        constructor(photo, name, role) {
-            this.photo = photo;
+        constructor(image, name, role) {
+            this.image = image;
             this.name = name;
             this.role = role;
         }
