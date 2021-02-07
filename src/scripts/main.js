@@ -144,7 +144,7 @@ function actorBuilder() {
     let rolesList = document.querySelectorAll('.actor-role'); 
 
     for(let i = 0; i < actorsList.length; i++) {
-        list.push(new Actor(photosList[i].value.trim(), actorsList[i].value.trim(), rolesList[i].value.trim()))
+        list.push(new Actor(photosList[i].value.trim().replace("https://d2t8nixuow17vt.cloudfront.net/persona", ''), actorsList[i].value.trim(), rolesList[i].value.trim()))
     }
     return list;
 }
