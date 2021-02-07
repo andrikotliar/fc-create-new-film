@@ -124,18 +124,19 @@ function productionBuilder() {
 }
 function actorBuilder() {
     class Actor {
-        constructor(image, name, role) {
-            this.image = image;
+        constructor(photo, name, role) {
+            this.photo = photo;
             this.name = name;
             this.role = role;
         }
     }
     let list = [];
+    let photosList = document.querySelectorAll('.actor-photo');
     let actorsList = document.querySelectorAll('.actor-name');
     let rolesList = document.querySelectorAll('.actor-role'); 
 
     for(let i = 0; i < actorsList.length; i++) {
-        list.push(new Actor(actorsList[i].value.trim().toLowerCase().replace(/\s/g, '-'), actorsList[i].value.trim(), rolesList[i].value.trim()))
+        list.push(new Actor(photosList[i].value.trim(), actorsList[i].value.trim(), rolesList[i].value.trim()))
     }
     return list;
 }
@@ -161,19 +162,26 @@ function awardBuilder() {
     return list;
 }
 
-function addLine(selector, firstClassName, secondClassName) {
+function addLine(selector, inputNumber, classNames, placeholders) {
     let layout = `
         <div class="inputs-line">
-            <div class="input-wrapper">
-                <input type="text" class="${firstClassName}" placeholder="Actor">
-            </div>
-            <div class="input-wrapper">
-                <input type="text" class="${secondClassName}" placeholder="Role">
-            </div>
-        </div>	    
+            ${addLineInput(inputNumber, classNames, placeholders)}
+        </div>
     `
-    
+
     selector.insertAdjacentHTML('beforeend', layout);
+}
+
+function addLineInput(inputNumber, classNames, placeholders) {
+    let layout = '';
+    for(let i = 0; i < inputNumber; i++) {
+        layout += `
+            <div class="input-wrapper">
+                <input type="text" class="${classNames[i]}" placeholder="${placeholders[i]}">
+            </div>
+        `       
+    }
+    return layout;
 }
 
 function seasonsComponent() {
@@ -193,7 +201,6 @@ function seasonsComponent() {
 }
 
 function addSeasons() {
-    let seasons = [];
     seasonsData.textContent = '';
     for(let i = 0; i < parseInt(seasonsCount.value); i++) {
         seasonsComponent();
@@ -342,10 +349,10 @@ clear.addEventListener('click', clearFields);
 save.addEventListener('click', () => checkID(saveData));
 copy.addEventListener('click', () => checkID(copyData));
 addActor.addEventListener('click', () => {
-    addLine(actors, 'actor-name', 'actor-role');
+    addLine(actors, 3, ['actor-photo', 'actor-name', 'actor-role'], ['Photo', 'Actor', 'Role']);
 });
 addAward.addEventListener('click', () => {
-    addLine(awards, 'award-title', 'award-nominations');
+    addLine(awards, 2, ['award-title', 'award-nominations'], ['Awards', 'Nominations']);
 });
 modalOverlay.addEventListener('click', closeModal);
 jsonID.addEventListener('change', () => {

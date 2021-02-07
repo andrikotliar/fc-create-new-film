@@ -11,7 +11,7 @@
 	width: 210px;
 }
 
-@media (max-width: 910px) {
+@media (max-width: 1260px) {
 	.inputs-line {
 		flex-direction: column;
 		gap: 10px;

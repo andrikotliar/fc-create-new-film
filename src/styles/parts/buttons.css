@@ -50,16 +50,20 @@
 .add-line-btn {
 	position: absolute;
 	bottom: 0;
-	left: 460px;
+	left: 690px;
 	color: #fff;
 	background-color: #006db7;
+}
+
+.add-award-btn {
+	left: 460px;
 }
 
 .add-line-btn:hover {
 	box-shadow: 0 0 0 3px rgba(114, 184, 231, .5);
 }
 
-@media (max-width: 910px) {
+@media (max-width: 1260px) {
 	.add-line-btn {
 		left: 240px;
 		bottom: 10px;
