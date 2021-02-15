@@ -58,7 +58,7 @@ function newFilm() {
 	let id = document.querySelector('#id').value;
     let title = document.querySelector('#title').textContent;
     let poster = document.querySelector('#poster').value.trim();
-    let trailer = document.querySelector('#trailer').value.trim();
+    let trailer = document.querySelector('#trailer').value.trim().replace("https://www.youtube.com/watch?v=", '');
     let genresList = document.querySelectorAll('.categories--genres input[type="checkbox"]');
     let genres = genreBuilder(genresList);
     let production = productionBuilder();
@@ -174,11 +174,20 @@ function addLine(selector, inputNumber, classNames, placeholders) {
     let layout = `
         <div class="inputs-line">
             ${addLineInput(inputNumber, classNames, placeholders)}
+            <button class="remove-line-btn btn">Remove</button>
         </div>
     `
 
     selector.insertAdjacentHTML('beforeend', layout);
 }
+
+function removeLine(e) {
+    if(e.target.classList.contains('remove-line-btn')) {
+        e.target.closest('.inputs-line').remove();
+    }
+}
+
+document.addEventListener('click', removeLine);
 
 function addLineInput(inputNumber, classNames, placeholders) {
     let layout = '';
