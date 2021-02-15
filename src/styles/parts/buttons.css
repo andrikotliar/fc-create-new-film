@@ -48,11 +48,9 @@
 }
 
 .add-line-btn {
-	position: absolute;
-	bottom: 0;
-	left: 690px;
 	color: #fff;
 	background-color: #006db7;
+	margin-top: 20px;
 }
 
 .add-award-btn {
@@ -63,16 +61,7 @@
 	box-shadow: 0 0 0 3px rgba(114, 184, 231, .5);
 }
 
-@media (max-width: 1260px) {
-	.add-line-btn {
-		left: 240px;
-		bottom: 10px;
-	}
-}
-@media (max-width: 650px) {
-	.add-line-btn {
-		left: 0;
-		bottom: 0;
-		width: 100%;
-	}
+.remove-line-btn {
+	color: #fff;
+	background-color: #ef5350;
 }
