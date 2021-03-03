@@ -132,19 +132,17 @@ function productionBuilder() {
 }
 function actorBuilder() {
     class Actor {
-        constructor(image, name, role) {
-            this.image = image;
+        constructor(name, role) {
             this.name = name;
             this.role = role;
         }
     }
     let list = [];
-    let photosList = document.querySelectorAll('.actor-photo');
     let actorsList = document.querySelectorAll('.actor-name');
     let rolesList = document.querySelectorAll('.actor-role'); 
 
     for(let i = 0; i < actorsList.length; i++) {
-        list.push(new Actor(photosList[i].value.trim().replace("https://d2t8nixuow17vt.cloudfront.net/persona", ''), actorsList[i].value.trim(), rolesList[i].value.trim()))
+        list.push(new Actor(actorsList[i].value.trim(), rolesList[i].value.trim()))
     }
     return list;
 }
@@ -367,7 +365,7 @@ clear.addEventListener('click', clearFields);
 save.addEventListener('click', () => checkID(saveData));
 copy.addEventListener('click', () => checkID(copyData));
 addActor.addEventListener('click', () => {
-    addLine(actors, 3, ['actor-photo', 'actor-name', 'actor-role'], ['Photo', 'Actor', 'Role']);
+    addLine(actors, 2, ['actor-name', 'actor-role'], ['Actor', 'Role']);
 });
 addAward.addEventListener('click', () => {
     addLine(awards, 2, ['award-title', 'award-nominations'], ['Awards', 'Nominations']);
